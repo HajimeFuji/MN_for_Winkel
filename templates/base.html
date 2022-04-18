@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="application-name" content="My Maintenance Note"/>
+    <meta name="msapplication-square70x70logo" content="small.jpg"/>
+    <meta name="msapplication-square150x150logo" content="medium.jpg"/>
+    <meta name="msapplication-wide310x150logo" content="wide.jpg"/>	
+    <meta name="msapplication-square310x310logo" content="large.jpg"/>
+    <meta name="msapplication-TileColor" content="#FAA500"/>
+    <title>マイメンテナンスノート</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
+    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <script src="../static/js/common.js"></script>
+    <!-- <link rel="icon" type="image/png" href="/akarennga_180.png"> -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/apple-touch-icon.png">
+    <link rel="shortcut icon" href="https://mymaintenancenote20210703.herokuapp.com/index" type="image/vnd.microsoft.icon"> 
+    <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <header>
+        <div id="page_top">
+            <a class="top" href="/index">My Maintenance Note</a>
+        </div>
+    </header>
+    <nav id="nav">  
+        <ul>
+            <li><a class="item_top" href="/index"><i class="fas fa-sign-in-alt my-gray fa-fw"></i>ログイン</a></li>
+            <li><a class="item_top" href="/list/uti"><i class="fas fa-bath my-gray fa-fw"></i>おうちごと</a></li>
+            <li><a class="item_top" href="/list/soto"><i class="fas fa-car my-gray fa-fw"></i>おそとごと</a></li>
+            <li><a class="item_top" href="/list/niwa"><i class="fas fa-carrot my-gray fa-fw"></i>おにわごと</a></li>
+            <li><a class="item_top" href="/notice/tasklist"><i class="fas fa-envelope-open-text my-orange fa-fw"></i>通知リスト</a></li>
+        </ul>
+    </nav>
+    <div id="hamburger">
+        <span class="inner_line" id="line1"></span>
+        <span class="inner_line" id="line2"></span>
+        <span class="inner_line" id="line3"></span>
+    </div>  
+
+    {% block content %}
+
+    <a href="#" class="sc_btn" id="sc_top">↑</a>
+
+    {% endblock %}
+    <!-- <p style="background-color: rgb(102, 55, 148); ">これはフッターです</p> -->
+</body>
+
+<!-- 追加 -->
+<footer>
+    <p class="footer">Copyright 赤レンガ 2021</p>
+</footer>    
+
+</html>

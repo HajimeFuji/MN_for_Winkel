@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<p>アカウント情報を入力してください</p>
+<form action="/login" method="post">
+    <input type="text" name = "name" placeholder="名前を入力">
+    <input type="text" name = "password" placeholder="パスワードを入力">
+    <input type="submit" value="ログイン">
+</form>
+
+<a href="/regist">アカウント登録はこちら</a>
+
+{% endblock %}

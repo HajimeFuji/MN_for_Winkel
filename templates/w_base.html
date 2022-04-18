@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="application-name" content="My Maintenance Note"/>
+    <meta name="msapplication-square70x70logo" content="small.jpg"/>
+    <meta name="msapplication-square150x150logo" content="medium.jpg"/>
+    <meta name="msapplication-wide310x150logo" content="wide.jpg"/>	
+    <meta name="msapplication-square310x310logo" content="large.jpg"/>
+    <meta name="msapplication-TileColor" content="#FAA500"/>
+    <title>Winkel メンテ記録</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
+    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <script src="../static/js/common.js"></script>
+    <!-- <link rel="icon" type="image/png" href="/akarennga_180.png"> -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/w_apple-touch-icon.png">
+    <link rel="shortcut icon" href="https://mymaintenancenote20210703.herokuapp.com/" type="image/vnd.microsoft.icon"> 
+    <link rel="icon" href="/static/img/w_favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <header>
+        <div id="page_top">
+            <a class="top" href="/">Winkelメンテナンス記録</a>
+        </div>
+    </header>
+    <nav id="nav">  
+        <ul>
+            <li><a class="item_top" href="/list/condo"><i class="fas fa-igloo my-gray fa-fw"></i>コンドミニアム</a></li>
+            <li><a class="item_top" href="/list/bessou"><i class="fas fa-home my-gray fa-fw"></i>別荘</a></li>
+            <li><a class="item_top" href="/list/camp"><i class="fas fa-campground my-gray fa-fw"></i>キャンプ場</a></li>
+            <li><a class="item_top" href="/notice/w_tasklist"><i class="fas fa-envelope-open-text my-orange fa-fw"></i>通知リスト</a></li>
+        </ul>
+    </nav>
+    <div id="hamburger">
+        <span class="inner_line" id="line1"></span>
+        <span class="inner_line" id="line2"></span>
+        <span class="inner_line" id="line3"></span>
+    </div>  
+
+    {% block content %}
+
+    <a href="#" class="sc_btn" id="sc_top">↑</a>
+
+    {% endblock %}
+
+</body>
+
+<!-- 追加 -->
+<footer>
+    <p class="footer">Copyright 赤レンガ 2021</p>
+</footer>    
+
+</html>

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form action="/edit/uti" method="post">
+    
+    <div class="form_edit">
+        <div class="Form-Item">
+            <p class="Form-Item-Label isMsg"><span class="Form-Item-Label-Required"></span>編集</p>
+                <input name="item" type="text" value="{{item['item']}}" class="Form-Item-Input"> 
+                <input name="id" type="hidden" value="{{item['id']}}"> 
+        </div>
+        <div>  
+            <input type="submit" value="送信" class="btn1"> 
+        </div>
+    </div>
+</form>
+        
+<div class="btn_top1">
+    <a href="/index" type="button" class="btn5">トップに戻る</a>
+</div>  
+
+{% endblock %}

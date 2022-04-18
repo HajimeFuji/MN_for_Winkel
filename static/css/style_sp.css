@@ -1,0 +1,92 @@
+@charset "UTF-8";
+html {
+	overflow-y: scroll; /* IEへの対応 http://www.htmq.com/style/overflow-y.shtml */
+	/*Internet Explorerが独自に追加したプロパティ*/
+	/*画面に収まりきれなかったときにスクロールして表示することを許可するか否か*/
+}
+/* リセットおまじない--------------------------------- */
+body, h1, h2, h3, h4, h5, p, ul, ol, li, dl, dt, dd {
+	margin: 0px;
+	padding: 0px;
+}
+body {
+	background: #fff;
+	text-align: center;
+	font-size: 16px;
+	line-height: 1.4;
+	min-width: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+li {
+	list-style: none;
+}a {
+	outline: none;
+	color: inherit;
+	text-decoration: none;
+}
+
+img {
+	border: 0px;
+	vertical-align: bottom;
+}
+/* --------------------------------------------------- */
+
+body {
+	font-family: "Noto Sans Japanese", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, "メイリオ", "Meiryo", "HGPｺﾞｼｯｸM", "Osaka", "ＭＳ Ｐゴシック", sans-serif, Century Gothic, Arial;
+}
+
+
+header {
+	position: fixed;
+	width: 100%;
+}
+
+header .hum_menu {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+header .hum_menu a {
+	display: block;
+	height: 20px;
+	width: 40px;
+	padding: 10px 0px;
+	background-color: #eeeaec;
+    text-align: center;
+}
+header .hum_menu span {
+	display: block;
+	height: 2px;
+	width: 20px;
+    margin: 3px auto;
+	background-color: #aaa;
+}
+header ul {
+	display: none;
+	margin-right: 0 40px 0 0;
+}
+header ul li {
+	width: 50%;
+    line-height: 40px;
+	color: #acacac;
+	text-align: left;
+	font-size: 12px;
+	text-indent: 8px;
+}
+
+header ul li a {
+	display: block;
+	border-top: 1px solid #555;
+    border-width: 1px 1px 0 0;
+	/* ボーダーの幅  上 1px 右 1px 下 0 左 0 */
+}
+
+header.open {
+	background: #eeeaec;
+}
+
+header.open ul {
+	display: flex;
+	flex-wrap: wrap; 
+    /* ****flexの使い方について検索してみましょう!!**** */
+}

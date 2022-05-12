@@ -11,10 +11,10 @@ body {
 .img_base {
     width: 100%;    
 	border: 0px;
-	vertical-align: bottom;
+	/* vertical-align: bottom; */
 }
 
-header {
+/* header {
     width: 100vw;
     height: 80px;
 } 
@@ -22,7 +22,7 @@ header {
 	header {
 		height: 54px;
 	}
-}
+} */
 
 .top {
     width: 100%;    
@@ -38,9 +38,9 @@ header {
 	.top {
 		width: 100%;    
 		background-color: rgb(235, 231, 222);
-		font-size: 20px;
+		font-size: 18px;
 		padding: 17px 10px;
-		text-align: center;
+		/* text-align: center; */
 		/* left: 50px; */
 	}
 }
@@ -579,7 +579,7 @@ img {
 	width: 100%;
 	height: 42px;
 	/* PC用メニュー高さ */
-	line-height: 50px;
+	line-height: 42px;
 	/* PC用メニュー高さ */
 	background-color: #555;
 	/* PC用メニューボタン背景色 */

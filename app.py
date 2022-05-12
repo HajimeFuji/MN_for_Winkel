@@ -2,6 +2,7 @@ import os
 # Flask から importしてflaskを使えるようにする
 import sqlite3, datetime as dt
 from flask import Flask, render_template, request, redirect, session
+import psycopg2
 
 # appの名前でFlaskアプリを作っていく
 app = Flask(__name__)

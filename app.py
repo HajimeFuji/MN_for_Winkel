@@ -62,7 +62,7 @@ def add_post_room_condo():
     if tablename in tbname_list:
         return render_template("w_error_condo.html")
     else:
-        c.execute("insert into items values (null,?,?,?)", (ios_id,room,tablename))
+        c.execute("insert into items values (null,%s,%s,%s)", (ios_id,room,tablename))
         c.execute("create table %s (taskid INTEGER, item_id INTEGER, item TEXT, pro_date DATE, pro_number INTEGER, set_date DATE, t_date DATE, task TEXT, notice DATE, nt_id INTEGER, PRIMARY KEY(taskid AUTOINCREMENT))" %(tablename))
         conn.commit()
         c.close()
@@ -89,7 +89,7 @@ def add_post_room_bessou():
     if tablename in tbname_list:
         return render_template("w_error_bessou.html")
     else:
-        c.execute("insert into items values (null,?,?,?)", (ios_id,room,tablename))
+        c.execute("insert into items values (null,%s,%s,%s)", (ios_id,room,tablename))
         c.execute("create table %s (taskid INTEGER, item_id INTEGER, item TEXT, pro_date DATE, pro_number INTEGER, set_date DATE, t_date DATE, task TEXT, notice DATE, nt_id INTEGER, PRIMARY KEY(taskid AUTOINCREMENT))" %(tablename))
         conn.commit()
         c.close()
@@ -117,7 +117,7 @@ def add_post_room_camp():
     if tablename in tbname_list:
         return render_template("w_error_camp.html")
     else:
-        c.execute("insert into items values (null,?,?,?)", (ios_id,room,tablename))
+        c.execute("insert into items values (null,%s,%s,%s)", (ios_id,room,tablename))
         c.execute("create table %s (taskid INTEGER, item_id INTEGER, item TEXT, pro_date DATE, pro_number INTEGER, set_date DATE, t_date DATE, task TEXT, notice DATE, nt_id INTEGER, PRIMARY KEY(taskid AUTOINCREMENT))" %(tablename))
         conn.commit()
         c.close()
@@ -177,7 +177,7 @@ def edit_room_condo(id):
     conn = get_connection() 
     c = conn.cursor()
 
-    c.execute("select room from items where id=?", (id,))
+    c.execute("select room from items where id = %s", (id,))
     room = c.fetchone()[0]
     print(room)
     c.close()
@@ -195,7 +195,7 @@ def update_room_condo():
     conn = get_connection() 
     c = conn.cursor()
 
-    c.execute("update items set room=? where id = ?", (room,item_id))
+    c.execute("update items set room = %s where id = %s", (room,item_id))
     conn.commit()
     c.close()
     return redirect("/list/condo")
@@ -208,7 +208,7 @@ def edit_room_bessou(id):
     conn = get_connection() 
     c = conn.cursor()
 
-    c.execute("select room from items where id=?", (id,))
+    c.execute("select room from items where id = %s", (id,))
     room = c.fetchone()[0]
     c.close()
     room = {"id":id, "room":room}
@@ -226,7 +226,7 @@ def update_room_bessou():
     conn = get_connection() 
     c = conn.cursor()
 
-    c.execute("update items set room=? where id = ?", (room,item_id))
+    c.execute("update items set room = %s where id = %s", (room,item_id))
     conn.commit()
     c.close()
     return redirect("/list/bessou")
@@ -239,7 +239,7 @@ def edit_room_camp(id):
     conn = get_connection() 
     c = conn.cursor()
 
-    c.execute("select room from items where id=?", (id,))
+    c.execute("select room from items where id = %s", (id,))
     room = c.fetchone()[0]
     c.close()
     room = {"id":id, "room":room}
@@ -256,7 +256,7 @@ def update_room_camp():
     conn = get_connection() 
     c = conn.cursor()
 
-    c.execute("update items set room=? where id = ?", (room,item_id))
+    c.execute("update items set room = %s where id = %s", (room,item_id))
     conn.commit()
     c.close()
     return redirect("/list/camp")
@@ -269,9 +269,9 @@ def del_room_condo(id):
     conn = get_connection() 
     c = conn.cursor()
 
-    c.execute("select table_name from items where id=?", (id,))
+    c.execute("select table_name from items where id = %s", (id,))
     table_name = c.fetchone()[0]
-    c.execute("delete from items where id=?", (id,))
+    c.execute("delete from items where id = %s", (id,))
     c.execute("drop table %s" % (table_name))
     c = conn.commit()
     conn.close()
@@ -285,9 +285,9 @@ def del_room_bessou(id):
     conn = get_connection() 
     c = conn.cursor()
 
-    c.execute("select table_name from items where id=?", (id,))
+    c.execute("select table_name from items where id = %s", (id,))
     table_name = c.fetchone()[0]
-    c.execute("delete from items where id=?", (id,))
+    c.execute("delete from items where id = %s", (id,))
     c.execute("drop table %s" % (table_name))
     c = conn.commit()
     conn.close()
@@ -301,9 +301,9 @@ def del_room_camp(id):
     conn = get_connection() 
     c = conn.cursor()
 
-    c.execute("select table_name from items where id=?", (id,))
+    c.execute("select table_name from items where id = %s", (id,))
     table_name = c.fetchone()[0]
-    c.execute("delete from items where id=?", (id,))
+    c.execute("delete from items where id = %s", (id,))
     c.execute("drop table %s" % (table_name))
     c = conn.commit()
     conn.close()
@@ -317,11 +317,11 @@ def w_itemlist(id):
     conn = get_connection() 
     c = conn.cursor()
 
-    c.execute("select id from items where id = ?" , (id,))
+    c.execute("select id from items where id = %s" , (id,))
     id = c.fetchone()[0]
-    c.execute("select room from items where id = ?" , (id,))
+    c.execute("select room from items where id = %s" , (id,))
     room = c.fetchone()[0]
-    c.execute("select table_name from items where id = ?" , (id,))
+    c.execute("select table_name from items where id = %s" , (id,))
     table_name = c.fetchone()[0]
     c.execute("select taskid, t_id, item, pro_date, pro_number, set_date from %s where pro_date is NOT NULL" % (table_name))
     itemlist = []
@@ -353,9 +353,9 @@ def add_post_w_item(id):
     c = conn.cursor()
 
         #()はタプル型
-    c.execute("select table_name from items where id = ?" , (id,))
+    c.execute("select table_name from items where id = %s" , (id,))
     table_name = c.fetchone()[0]
-    c.execute("insert into %s values (null,?,?,?,?,?,?,?,?,?,?)" % (table_name), (id,t_id,item,pro_date,pro_number,set_date,t_date,task,notice,nt_id))
+    c.execute("insert into %s values (null,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)" % (table_name), (id,t_id,item,pro_date,pro_number,set_date,t_date,task,notice,nt_id))
     conn.commit()
     c.close()
     # return render_template("tasklist.html" , task_list = task_list, table_name = table_name, item = item, id = id)
@@ -369,23 +369,23 @@ def edit_w_itemlist_get(id,taskid):
     conn = get_connection() 
     c = conn.cursor()
 
-    c.execute("select table_name from items where id = ?" , (id,))
+    c.execute("select table_name from items where id = %s" , (id,))
     table_name = c.fetchone()[0]
-    c.execute("select item from %s where taskid=?" % (table_name), (taskid,))
+    c.execute("select item from %s where taskid=%s" % (table_name), (taskid,))
     item = c.fetchone()[0]
-    c.execute("select pro_date from %s where taskid=?" % (table_name), (taskid,))
+    c.execute("select pro_date from %s where taskid=%s" % (table_name), (taskid,))
     pro_date = c.fetchone()[0]  
-    c.execute("select pro_number from %s where taskid=?" % (table_name), (taskid,))
+    c.execute("select pro_number from %s where taskid=%s" % (table_name), (taskid,))
     pro_number = c.fetchone()[0] 
-    c.execute("select set_date from %s where taskid=?" % (table_name), (taskid,))
+    c.execute("select set_date from %s where taskid=%s" % (table_name), (taskid,))
     set_date = c.fetchone()[0]  
-    c.execute("select t_date from %s where taskid=?" % (table_name), (taskid,))
+    c.execute("select t_date from %s where taskid=%s" % (table_name), (taskid,))
     t_date = c.fetchone()[0]
-    c.execute("select task from %s where taskid=?" % (table_name), (taskid,))
+    c.execute("select task from %s where taskid=%s" % (table_name), (taskid,))
     task = c.fetchone()[0]
-    c.execute("select notice from %s where taskid=?" % (table_name), (taskid,))
+    c.execute("select notice from %s where taskid=%s" % (table_name), (taskid,))
     notice = c.fetchone()[0]   
-    c.execute("select nt_id from %s where taskid=?" % (table_name), (taskid,))
+    c.execute("select nt_id from %s where taskid=%s" % (table_name), (taskid,))
     nt_id = c.fetchone()[0] 
     c.close()
     task_list = {"taskid":taskid,"item":item, "pro_date":pro_date,"pro_number":pro_number,"set_date":set_date,"t_date":t_date, "task":task, "notice":notice, "nt_id":nt_id}
@@ -408,16 +408,16 @@ def w_itemlist_update(id):
     conn = get_connection() 
     c = conn.cursor()
 
-    c.execute("select table_name from items where id = ?" , (id,))
+    c.execute("select table_name from items where id = %s" , (id,))
     table_name = c.fetchone()[0]
-    c.execute("update %s set item=? where taskid = ?" %(table_name), (item,taskid,))
-    c.execute("update %s set pro_date=? where taskid = ?" %(table_name), (pro_date,taskid,))
-    c.execute("update %s set pro_number=? where taskid = ?" %(table_name), (pro_number,taskid,))
-    c.execute("update %s set set_date=? where taskid = ?" %(table_name), (set_date,taskid,))
-    c.execute("update %s set t_date=? where taskid = ?" %(table_name), (t_date,taskid,))
-    c.execute("update %s set task=? where taskid = ?" %(table_name), (task,taskid,))
-    c.execute("update %s set notice=? where taskid = ?" %(table_name), (notice,taskid,))
-    c.execute("update %s set nt_id=? where taskid = ?" %(table_name), (nt_id,taskid,))
+    c.execute("update %s set item=%s where taskid = %s" %(table_name), (item,taskid,))
+    c.execute("update %s set pro_date=%s where taskid = %s" %(table_name), (pro_date,taskid,))
+    c.execute("update %s set pro_number=%s where taskid = %s" %(table_name), (pro_number,taskid,))
+    c.execute("update %s set set_date=%s where taskid = %s" %(table_name), (set_date,taskid,))
+    c.execute("update %s set t_date=%s where taskid = %s" %(table_name), (t_date,taskid,))
+    c.execute("update %s set task=%s where taskid = %s" %(table_name), (task,taskid,))
+    c.execute("update %s set notice=%s where taskid = %s" %(table_name), (notice,taskid,))
+    c.execute("update %s set nt_id=%s where taskid = %s" %(table_name), (nt_id,taskid,))
     conn.commit()
     c.close()
     return redirect("/w_itemlist/%s" %(id))  
@@ -430,9 +430,9 @@ def del_w_itemlist(id,taskid):
     conn = get_connection() 
     c = conn.cursor()
 
-    c.execute("select table_name from items where id = ?" , (id,))
+    c.execute("select table_name from items where id = %s" , (id,))
     table_name = c.fetchone()[0]
-    c.execute("delete from %s where taskid=?" % (table_name), (taskid,))
+    c.execute("delete from %s where taskid=%s" % (table_name), (taskid,))
     c = conn.commit()
     conn.close()
     return redirect("/w_itemlist/%s" %(id)) 
@@ -445,15 +445,15 @@ def w_tasklist(id,t_id):
     conn = get_connection() 
     c = conn.cursor()
 
-    c.execute("select id from items where id = ?" , (id,))
+    c.execute("select id from items where id = %s" , (id,))
     id = c.fetchone()[0]
-    c.execute("select room from items where id = ?" , (id,))
+    c.execute("select room from items where id = %s" , (id,))
     room = c.fetchone()[0]
-    c.execute("select table_name from items where id = ?" , (id,))
+    c.execute("select table_name from items where id = %s" , (id,))
     table_name = c.fetchone()[0]
-    c.execute("select item from %s where t_id = ?" % (table_name), (t_id,))
+    c.execute("select item from %s where t_id = %s" % (table_name), (t_id,))
     item = c.fetchone()[0]
-    c.execute("select taskid, item, pro_date, pro_number, set_date, t_date, task, notice, nt_id from %s where t_id = ?" % (table_name), (t_id,))
+    c.execute("select taskid, item, pro_date, pro_number, set_date, t_date, task, notice, nt_id from %s where t_id = %s" % (table_name), (t_id,))
     tasklist = []
     task_list = []
     for row in c.fetchall():
@@ -487,9 +487,9 @@ def add_post_w_task(id,t_id):
     c = conn.cursor()
 
         #()はタプル型
-    c.execute("select table_name from items where id = ?" , (id,))
+    c.execute("select table_name from items where id = %s" , (id,))
     table_name = c.fetchone()[0]
-    c.execute("insert into %s values (null,?,?,?,?,?,?,?,?,?,?)" % (table_name), (id,t_id,item,pro_date,pro_number,set_date,t_date,task,notice,nt_id))
+    c.execute("insert into %s values (null,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)" % (table_name), (id,t_id,item,pro_date,pro_number,set_date,t_date,task,notice,nt_id))
     conn.commit()
     c.close()
     # return render_template("tasklist.html" , task_list = task_list, table_name = table_name, item = item, id = id)
@@ -503,25 +503,25 @@ def edit_w_tasklist_get(id,taskid):
     conn = get_connection() 
     c = conn.cursor()
 
-    c.execute("select table_name from items where id = ?" , (id,))
+    c.execute("select table_name from items where id = %s" , (id,))
     table_name = c.fetchone()[0]
-    c.execute("select t_id from %s where taskid=?" % (table_name), (taskid,))
+    c.execute("select t_id from %s where taskid=%s" % (table_name), (taskid,))
     t_id = c.fetchone()[0]
-    c.execute("select item from %s where taskid=?" % (table_name), (taskid,))
+    c.execute("select item from %s where taskid=%s" % (table_name), (taskid,))
     item = c.fetchone()[0]
-    c.execute("select pro_date from %s where taskid=?" % (table_name), (taskid,))
+    c.execute("select pro_date from %s where taskid=%s" % (table_name), (taskid,))
     pro_date = c.fetchone()[0]  
-    c.execute("select pro_number from %s where taskid=?" % (table_name), (taskid,))
+    c.execute("select pro_number from %s where taskid=%s" % (table_name), (taskid,))
     pro_number = c.fetchone()[0] 
-    c.execute("select set_date from %s where taskid=?" % (table_name), (taskid,))
+    c.execute("select set_date from %s where taskid=%s" % (table_name), (taskid,))
     set_date = c.fetchone()[0]  
-    c.execute("select t_date from %s where taskid=?" % (table_name), (taskid,))
+    c.execute("select t_date from %s where taskid=%s" % (table_name), (taskid,))
     t_date = c.fetchone()[0]
-    c.execute("select task from %s where taskid=?" % (table_name), (taskid,))
+    c.execute("select task from %s where taskid=%s" % (table_name), (taskid,))
     task = c.fetchone()[0]
-    c.execute("select notice from %s where taskid=?" % (table_name), (taskid,))
+    c.execute("select notice from %s where taskid=%s" % (table_name), (taskid,))
     notice = c.fetchone()[0]   
-    c.execute("select nt_id from %s where taskid=?" % (table_name), (taskid,))
+    c.execute("select nt_id from %s where taskid=%s" % (table_name), (taskid,))
     nt_id = c.fetchone()[0] 
     c.close()
     task_list = {"taskid":taskid,"t_id":t_id, "item":item, "pro_date":pro_date,"pro_number":pro_number,"set_date":set_date,"t_date":t_date, "task":task, "notice":notice, "nt_id":nt_id}
@@ -546,17 +546,17 @@ def w_tasklist_update(id):
     conn = get_connection() 
     c = conn.cursor()
 
-    c.execute("select table_name from items where id = ?" , (id,))
+    c.execute("select table_name from items where id = %s" , (id,))
     table_name = c.fetchone()[0]
-    c.execute("update %s set t_id=? where taskid = ?" %(table_name), (t_id,taskid,))
-    c.execute("update %s set item=? where taskid = ?" %(table_name), (item,taskid,))
-    c.execute("update %s set pro_date=? where taskid = ?" %(table_name), (pro_date,taskid,))
-    c.execute("update %s set pro_number=? where taskid = ?" %(table_name), (pro_number,taskid,))
-    c.execute("update %s set set_date=? where taskid = ?" %(table_name), (set_date,taskid,))
-    c.execute("update %s set t_date=? where taskid = ?" %(table_name), (t_date,taskid,))
-    c.execute("update %s set task=? where taskid = ?" %(table_name), (task,taskid,))
-    c.execute("update %s set notice=? where taskid = ?" %(table_name), (notice,taskid,))
-    c.execute("update %s set nt_id=? where taskid = ?" %(table_name), (nt_id,taskid,))
+    c.execute("update %s set t_id=%s where taskid = %s" %(table_name), (t_id,taskid,))
+    c.execute("update %s set item=%s where taskid = %s" %(table_name), (item,taskid,))
+    c.execute("update %s set pro_date=%s where taskid = %s" %(table_name), (pro_date,taskid,))
+    c.execute("update %s set pro_number=%s where taskid = %s" %(table_name), (pro_number,taskid,))
+    c.execute("update %s set set_date=%s where taskid = %s" %(table_name), (set_date,taskid,))
+    c.execute("update %s set t_date=%s where taskid = %s" %(table_name), (t_date,taskid,))
+    c.execute("update %s set task=%s where taskid = %s" %(table_name), (task,taskid,))
+    c.execute("update %s set notice=%s where taskid = %s" %(table_name), (notice,taskid,))
+    c.execute("update %s set nt_id=%s where taskid = %s" %(table_name), (nt_id,taskid,))
     conn.commit()
     c.close()
     return redirect("/w_tasklist/%s/%s" %(id, t_id,))
